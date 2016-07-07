@@ -1,0 +1,140 @@
+<!doctype html>
+<!--[if lte IE 7]> <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>     <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9]>     <html class="ie9" lang="en"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en">             <!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<title>{SITE_NAME}</title>
+	<subtemplate:htmlshiv/>
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+	<div id="main_wrapper">
+		<div id="logo">{SITE_NAME}</div>
+		<div id="offer_wrapper">
+			<div id="product_wrapper">
+				<!-- <img src="assets/flower.png" alt=""/> -->
+				<img id='32230' class="active" src="assets/bag_pink-ruby.jpg" alt="Coach Bag - Pink Ruby"/>
+				<img id='32233' src="assets/bag_nude.jpg" alt="Coach Bag - Nude"/>
+				<img id='32231' src="assets/bag_pink.jpg" alt="Coach Bag - Pink"/>
+				<img id='32232' src="assets/bag_denim.jpg" alt="Coach Bag - Denim"/>
+				<img id='32234' src="assets/bag_cardinal.jpg" alt="Coach Bag - Cardinal"/>
+				<img id='32236' src="assets/bag_sadle.jpg" alt="Coach Bag - Sadle"/>
+				<img id='32176' src="assets/bag_navy.jpg" alt="Coach Bag - Navy"/>
+				<img id='32237' src="assets/bag_black.jpg" alt="Coach Bag - Black"/>
+
+			</div>
+			<div id="offer-txt_wrapper">
+				<div id="title_wrapper">Get a
+					<img src="assets/coach.png" alt="Coach" width="420" height="77"/>
+					<span>EDIE shoulder bag,</span><span class="details-apply"><a href='javascript:void(0)' onclick="showD('details')" >details apply</a></span></div>
+				<div id="input_wrapper">
+					<input type="text" class="input" name="email" id="email" placeholder="Enter Your Email" />
+					<input type="hidden" name="stop" id="stop" value="0" >
+
+					<div id="color-field">
+						<select id="gift" name="gift" class="input">
+                          <option value='32230'>Select Your Color</option>
+                          <option value='32237'>Black</option>
+                          <option value='32236'>Saddle</option>
+                          <option value='32233'>Nude</option>
+                          <option value='32234'>Cardinal</option>
+                          <option value='32232'>Denim</option>
+                          <option value='32231'>Pink</option> 
+                          <option value='32230'>Pink Ruby</option> 
+				        </select>
+					</div>
+					<button type="submit" class="button">Continue</button>
+				</div>
+			</div>
+		</div><!--END offer_wrapper-->
+	</div>
+
+	<footer>
+		<div class="wrapper">
+			<div><strong>{SITE_NAME} <span data-id="disclaimer">Gift Program is not endorsed, sponsored by or affiliated with Coach Services, Inc., or any other merchants listed above. Such terms are registered trademarks of their respective owners.</span></strong></div>
+			<div align="center"><!--BeginField:Copyright-->Copyright &copy; <span id="year">{year}</span> {SITE_NAME}. All rights reserved.<!--EndField:Copyright--></div>
+		</div>
+	</footer>
+	<!-- START Pop-up Disclaimer -->
+	<div style="width:375px; left: 50%; top: 50%; margin-left: -161px; margin-top: -148.5px; position: fixed; z-index: 10000;">
+		<div id="details" onMouseOver="showD('details')" onMouseOut="hideD('details')">
+			<div align="right" style="padding-bottom:5px;">
+				<input type="button" onClick="hideD('details')" onBlur="hideD('details')" value="Close">
+			</div>
+			{disclaimer placed here}
+		</div>
+	</div>
+	<!-- END Pop-up Disclaimer -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+	 <script> 
+ $(function() {
+
+
+            var v_product         = '32230' ; 
+            var v_time            = 4000 ;  
+            var $image_container  = $('#product_wrapper');  
+            $('#gift').val('32230');
+            $image_container.children().first().addClass('active').show();
+
+            if ($(this).width() <= 768){
+                $('#offer_wrapper').after($('#input_wrapper'));
+                $('#offer-txt_wrapper').after($('#product_wrapper'));
+            }else{
+                $('#title_wrapper').after($('#input_wrapper'));
+                $('#product_wrapper').after($('#offer-txt_wrapper'));
+            }
+                       		
+            $('#gift').on('change',function(){
+                 v_product = $(this).val();
+                 elShowHide(v_product);
+            });
+
+            $('#gift').on('click',function(){
+                if($('#stop').val()==0)
+                 {
+                  $('#stop').val(1);
+                   elShowHide(32237);
+                   $('option[value=32237]').prop('selected', 'selected');           
+                 } 
+             });
+         
+        
+        setInterval(function(){
+          if($('#stop').val()==0)
+           {
+              var $current = $image_container.children('.active');
+              var $next = $current.next('img');
+              if (!$next.length){
+                  $next = $image_container.children().first();
+              }
+              $current.removeClass('active').hide();
+              $next.show().addClass('active');
+              $('option[value='+ $next.attr('id') +']').prop('selected', 'selected');             
+           } 
+
+        }, v_time);          
+     });
+     
+     function elShowHide(eid)
+     {
+             $("#product_wrapper > :not(#" + eid+")").hide();
+             $("#" + eid).show();      
+     }
+    function showD(id) 
+    {
+      document.getElementById(id).style.display = "block";  
+    }
+    function hideD(id) 
+    {
+      document.getElementById(id).style.display = "none"; 
+    }
+    
+
+ </script>
+</body>
+</html>
