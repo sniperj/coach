@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width" />
 	<title>{SITE_NAME}</title>
 	<subtemplate:htmlshiv/>
-	
+
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
@@ -44,8 +44,8 @@
                           <option value='32233'>Nude</option>
                           <option value='32234'>Cardinal</option>
                           <option value='32232'>Denim</option>
-                          <option value='32231'>Pink</option> 
-                          <option value='32230'>Pink Ruby</option> 
+                          <option value='32231'>Pink</option>
+                          <option value='32230'>Pink Ruby</option>
 				        </select>
 					</div>
 					<button type="submit" class="button">Continue</button>
@@ -70,14 +70,14 @@
 		</div>
 	</div>
 	<!-- END Pop-up Disclaimer -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-	 <script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	 <script>
  $(function() {
 
 
-            var v_product         = '32230' ; 
-            var v_time            = 4000 ;  
-            var $image_container  = $('#product_wrapper');  
+            var v_product         = '32230' ;
+            var v_time            = 4000 ;
+            var $image_container  = $('#product_wrapper');
             $('#gift').val('32230');
             $image_container.children().first().addClass('active').show();
 
@@ -88,7 +88,7 @@
                 $('#title_wrapper').after($('#input_wrapper'));
                 $('#product_wrapper').after($('#offer-txt_wrapper'));
             }
-                       		
+
             $('#gift').on('change',function(){
                  v_product = $(this).val();
                  elShowHide(v_product);
@@ -99,11 +99,11 @@
                  {
                   $('#stop').val(1);
                    elShowHide(32237);
-                   $('option[value=32237]').prop('selected', 'selected');           
-                 } 
+                   $('option[value=32237]').prop('selected', 'selected');
+                 }
              });
-         
-        
+
+
         setInterval(function(){
           if($('#stop').val()==0)
            {
@@ -114,26 +114,26 @@
               }
               $current.removeClass('active').hide();
               $next.show().addClass('active');
-              $('option[value='+ $next.attr('id') +']').prop('selected', 'selected');             
-           } 
+              $('option[value='+ $next.attr('id') +']').prop('selected', 'selected');
+           }
 
-        }, v_time);          
+        }, v_time);
      });
-     
+
      function elShowHide(eid)
      {
              $("#product_wrapper > :not(#" + eid+")").hide();
-             $("#" + eid).show();      
+             $("#" + eid).show();
      }
-    function showD(id) 
+    function showD(id)
     {
-      document.getElementById(id).style.display = "block";  
+      document.getElementById(id).style.display = "block";
     }
-    function hideD(id) 
+    function hideD(id)
     {
-      document.getElementById(id).style.display = "none"; 
+      document.getElementById(id).style.display = "none";
     }
-    
+
 
  </script>
 </body>
